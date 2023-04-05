@@ -3,7 +3,7 @@
 <!--This file is machine generated and read. It is not intended to be edited by hand.-->
 <!--Due to this, there is no schema for this file.-->
 <CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWorkspaceSerialize" version="5" xml_contents_version="3" name="I2C_Class" persistent="I2C_Class.cywrk" platform="NOT_USED">
-<current_project name=".\02-I2C_Master_Read.cydsn\02-I2C_Master_Read.cyprj" />
+<current_project name=".\03-I2C_Master_Advanced.cydsn\03-I2C_Master_Advanced.cyprj" />
 <wrkspc_folders />
 <files />
 <projects>

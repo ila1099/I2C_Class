@@ -143,7 +143,7 @@ int main(void)
     
     /* I2C Temperature CFG REG Writing */
     
-    /*
+
     tmp_cfg_reg |= LIS3DH_TEMP_CFG_REG_ACTIVE; 
     
     error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
@@ -164,10 +164,9 @@ int main(void)
     UART_1_PutString("Error occurred during I2C read of LIS3DH_TEMP_CFG_REG\r\n");
     }
 
-    */
+    
     /*   I2C Temperature CTRL REG 4 Writing from LIS3DH   */
     
-    /*
     uint8_t ctrl_reg4; // Ctrl Register variable
     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
                                         LIS3DH_CTRL_REG4,
@@ -200,13 +199,25 @@ int main(void)
     {
     UART_1_PutString("Error occurred during I2C read of CONTROL REGISTER 4\r\n");
     } 
-    */
+    
+    // Raw temperature data buffer 
+    uint8_t TemperatureData[2];
+    int16_t OutTemp;
     
     
     for(;;)
     {
-
+        CyDelay(100);
         
+        error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS, LIS3DH_OUT_ADC_3L, &TemperatureData[0]);
+        error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS, LIS3DH_OUT_ADC_3H, &TemperatureData[1]);
+        
+        if(error == NO_ERROR)
+        {
+            OutTemp = (int16)(TemperatureData[0] | (TemperatureData[1]<<8)) >> 6;
+            sprintf(message, "Temp Output: %d \r\n", OutTemp);
+            UART_1_PutString(message);
+        }
     }
 }
 
